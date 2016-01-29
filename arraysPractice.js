@@ -7,7 +7,10 @@ var arr = [10,20,30];
   function first(arr) {
     return arr[0];
   }
-
+// function first(arr) {
+  // arr = arr || [];
+  //return arr[0];
+//}
 
 //Next problem
 
@@ -53,15 +56,17 @@ var letters = ['A', 'B', 'C', 'D', 'E'];
 
 
 var nums = [1,2,3,6,22,98,45,23,22,12];
-var newArr = [];
 //Write a function named evenFinder that is given nums as it's only argument and removes all values that aren't even from the given array.
 
 function evenFinder(nums) {
+  var newArr = [];
   for (var i = 0; i < nums.length; i++) {
       if (nums[i] % 2 === 0) {
-        newArr.push(nums[i]);
+       newArr.push(nums[i]);
       }
-    } return newArr;
+    } 
+
+  return newArr;
 } 
 
 
@@ -71,11 +76,13 @@ function evenFinder(nums) {
 var nums = [1,2,34,54,55,34,32,11,19,17,54,66,13];
 var evens = [];
 var odds = [];
-var newArr = [];
 //Write a function called divider that is given three arguments, nums, evens, and odds.
 //Have divider return an Array with the first item in the array being the evens array (all the even values from nums) and the second item in the Array being the odds array(all the odd values from nums).
 
  function divider(nums, evens, odds) {
+  var newArr = [];
+  evens = evens || [];
+  odds = odds || [];
   for (var i = 0; i < nums.length; i++) {
     if (nums[i] % 2 === 0) {
         evens.push(nums[i]);
@@ -116,7 +123,7 @@ var str = 'this is my sentence';
   function reverse(str) {
     return str = str.split('').reverse().join('');
   }
-
+ 
 
 //Next Problem
 
@@ -135,7 +142,25 @@ var myGroceryList = ['chips', 'pizza', 'hotpockets', 'MtnDew', 'corndogs'];
   myGroceryList then return the new, updated grocery list.
 */
 
-  //Code Here
+  function removeItem(myGroceryList, removedThing) {
+    for (var i = 0; i < myGroceryList.length; i++) {
+      if (removedThing === myGroceryList[i]) {
+        myGroceryList.splice(i, 1);
+      }
+    } 
+    console.log(' ')
+    return myGroceryList;
+  }
+
+  function addItem(myGroceryList, addedThing) {
+    myGroceryList.push(addedThing);
+    return myGroceryList;
+  }
+
+removeItem(myGroceryList, 'chips');
+addItem(myGroceryList, 'Jerky');
+
+// 
 
 //removeItem(myGroceryList, 'chips') --> ['pizza', 'hotpockets', 'MtnDew', 'corndogs'];
 //addItem(myGroceryList, 'Jerky') --> ['pizza', 'hotpockets', 'MtnDew', 'corndogs', 'Jerky'];
@@ -148,7 +173,13 @@ var myGroceryList = ['chips', 'pizza', 'hotpockets', 'MtnDew', 'corndogs'];
 
 //Write a function called maker that creates an array, fills that array with numbers from 1 to 215, then returns the array.
 
-  //Code Here
+  function maker() {
+    var numsArr = [];
+    for (var i = 0; i < 215; i++) {
+      numsArr.push(i);
+    } return numsArr;
+ } 
+
 
 
 
@@ -159,9 +190,45 @@ var numbers = [5, '9', 16, 19, '25', '34', 48];
 //Write a function called addTen that is given 'numbers' as it's only argument and returns a new
 //array after adding ten to each item in numbers. *Verify your answer is correct. --> [15, 19, 26, 29, 35, 44, 58]
 
-  //Code Here
+// My attempt # 1
+  //function addTen(numbers) {
+    // var newNums = [];
+  //  for(var i = 0; i < numbers.length; i++) {
+  //    if (typeOf numbers[i] === 'string') {
+  //      numbers[i] = parseInt(numbers);
+  //    }
+  //   newNums.push(numbers[i] + 10);
+  //  }
+  //  return newNums;
+  // }
+  // addTen(numbers);
 
+ function addTen(ints) {
+  ints.forEach(function(int){
+    return parseInt(ints) + 10;
+  });
+ } 
 
+//Ben's example
+// function addTen(ints) {
+  // var intTransformsforEach(function(int, i) {
+ //   return parseInt(int) + 10;
+ // });
+ // return ints;
+//}
+// forEach iterates over the array, takes each item one by one, invokes function
+// then passes value-- so function is passed in as an argument
+//
+//
+//
+//
+//
+
+// if numbers.typeof = "string" {
+// convert to number with parse.Int
+//}
+// loop through each item and add ten numbers[i] + 10
+//add each item to a new arr, so define new array in function
 
 //Next Problem
 
@@ -180,7 +247,15 @@ for(var i = 0; i < num2; i++){
 //Above is some code that adds a random number of values to both arr1 and arr2.
 //Write a function called 'longer' that is given arr1 and arr2 as it's only arguments. Return the array which is longest.
 
-  //Code Here
+  function longer(arr1, arr2){
+    if (arr1.length > arr2.length) {
+      return arr1;
+     } 
+    else {
+      return arr2;
+    }  
+  }
+
 
 
 /*As a continuation of the previous problem, write another function called 'both'.
@@ -188,8 +263,19 @@ for(var i = 0; i < num2; i++){
   'both' should return a new array full of numbers that are found in both arr1 and arr2.
 */
 
-  //Code Here
+  function both(arr1, arr2) {
+    var newArr = [];
+    for(var i = 0; i < arr1.length; i++) {
+      for(var j = 0; j < arr2.length; j++) {
+        if (arr1[i] === arr2[j]) {
+          newArr.push(arr1[i]);
+        }
+      }
+    }
+    return newArr; 
+  }
   
+  both(arr1,arr2);
   
   
 
@@ -228,12 +314,19 @@ var colt = {
 array with those four objects. After that console.log the length of the Array and make
 sure that it's equal to 4. */
 
-  //Code Here
+devMountainEmployees = [tyler, cahlan, ryan, colt];
+console.log(devMountainEmployees.length);
 
 /*Now let's say Cahlan has a mental breakdown and has to take a leave of absence to 'find himself'.
 Loop through your devMountainEmployees until you find cahlan, then remove him from the array.*/
 
-  //Code Here
+function removeCahlan() {
+  for(var i = 0; i < devMountainEmployees.length; i++) {
+    if (devMountainEmployees[i] = cahlan) {
+      devMountainEmployees.splice(i, 1);
+    }
+  }
+}
 
 
 
@@ -275,7 +368,7 @@ of Data is to have an Array full of objects. */
 
 //Create an empty array called users.
 
-  //Code Here
+ var users = [];
 
 /*Now add three user objects to your users array. Each user object should contain the
 following properties. name, email, password, username.*/
@@ -288,7 +381,7 @@ var user1 = {
     username: 'infiniateLoop'
 };
 
-//Your Code Here
+ 
 
 /*Now you have a very common data structure. Twitter is a good use case.
 It's easy to imagine that your followers list on Twitter is an Array full or objects
